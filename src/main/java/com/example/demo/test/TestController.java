@@ -8,10 +8,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-	@GetMapping("/test1")
-	public ResponseEntity<String> test(@RequestParam("data") int data) throws InterruptedException {
+
+
+
+	@GetMapping("/ver1")
+	public ResponseEntity<String> ver1(@RequestParam("data") int data) throws InterruptedException {
 		Thread.sleep(8000);
 		if (data < 1047720015) {
+			System.out.println("ok = " + data);
+			return ResponseEntity.ok(data + " is");
+		} else {
+			System.out.println("error = " + data);
+			return ResponseEntity.status(500).body("Error");
+		}
+	}
+
+
+	@GetMapping("/ver2")
+	public ResponseEntity<String> ver2(@RequestParam("data") int data) throws InterruptedException {
+		Thread.sleep(8000);
+		if (data < 0) {
 			System.out.println("ok = " + data);
 			return ResponseEntity.ok(data + " is");
 		} else {
